@@ -13,16 +13,15 @@ from app.core.errors import (
 )
 from app.services.seeder import seed_admin, seed_sample_data
 
-allow_all_origins = settings.cors_origins.strip() == "*"
-
 app = FastAPI(title=settings.app_name)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if allow_all_origins else settings.cors_origin_list,
-    allow_origin_regex=".*" if allow_all_origins else None,
+    allow_origins=["*"],
+    allow_origin_regex=".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 app.include_router(api_router)
